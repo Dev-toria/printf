@@ -24,8 +24,8 @@ int _printf (const char *input ,...);
 int (*specifer_check(char))(va_list);
 int handle_char(va_list args);
 int handle_str(va_list args);
-int handle_cent(va_list args);
 int handle_dec(va_list args);
 int handle_int(va_list args);
+int handle_cent();
 
 #endif

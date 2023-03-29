@@ -12,15 +12,7 @@ specifier_handler specifer_check(char spec)
 	{
 		int i;
 
-		handler int_handler = {'i', handle_int};
-		handler str_handler = {'s', handle_str};
-		handler char_handler = {'c', handle_char};
-		handler cent_handler = {'%', handle_cent};
-		handler dec_handler = {'d', handle_dec};
-		handler null_handler = {'\0', NULL};
-
-		handler handlers[] = {char_handler, str_handler,
-		       cent_handler, dec_handler, int_handler, null_handler};
+		handler handlers[5] = {{'i', handle_int}, {'s', handle_str}, {'c', handle_char}, {'d', handle_dec}, {'\0', NULL}};
 
 		for (i = 0; handlers[i].c != '\0'; i++)
 		{
@@ -31,6 +23,7 @@ specifier_handler specifer_check(char spec)
 		}
 		return (NULL);
 	}
+	return (NULL);
 }
 
 /**
@@ -40,11 +33,10 @@ specifier_handler specifer_check(char spec)
 */
 int _printf(const char *input, ...)
 {
+	specifier_handler handler;
 	int count = 0, i = 0;
 	va_list args;
-
 	va_start(args, input);
-	specifier_handler handler;
 
 	while (input[i])
 	{
@@ -56,11 +48,18 @@ int _printf(const char *input, ...)
 		if (input[i] == '%')
 		{
 			i++;
-			handler = specifer_check(input[i]);
-			count += handler(args);
+			if (input[i] == '%')
+			{
+				count += handle_cent();
+			} else
+			{
+				handler = specifer_check(input[i]);
+				count += handler(args);
+			}
+
 			i++;
 		}
 	}
 	va_end(args);
-return (count);
+	return (count);
 }
