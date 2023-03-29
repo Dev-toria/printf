@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * handle_char - function to handle char specifer
- * args: variadic argument list.
+ * @args: variadic argument list.
  * Return: int
 */
 int handle_char(va_list args)
@@ -15,7 +15,7 @@ int handle_char(va_list args)
 
 /**
  * handle_str - function to handle string specifer
- * args: variadic argument list.
+ * @args: variadic argument list.
  * Return: int
 */
 int handle_str(va_list args)
@@ -32,7 +32,7 @@ int handle_str(va_list args)
  * handle_cent - function to handle percent specifer
  * Return: int
 */
-int handle_cent()
+int handle_cent(void)
 {
 	write(1, "%", 1);
 	return (1);
@@ -40,7 +40,7 @@ int handle_cent()
 
 /**
  * handle_dec - function to handle decimal specifer
- * args: variadic argument list.
+ * @args: variadic argument list.
  * Return: int
 */
 int handle_dec(va_list args)
@@ -57,7 +57,7 @@ int handle_dec(va_list args)
 
 /**
  * handle_int - function to handle integer specifer
- * args: variadic argument list.
+ * @args: variadic argument list.
  * Return: int
 */
 int handle_int(va_list args)

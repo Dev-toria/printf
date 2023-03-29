@@ -20,7 +20,7 @@ typedef struct handler
 } handler;
 
 
-int _printf (const char *input ,...);
+int _printf(const char *input, ...);
 int (*specifer_check(char))(va_list);
 int handle_char(va_list args);
 int handle_str(va_list args);
