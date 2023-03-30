@@ -9,7 +9,7 @@ int handle_binary(va_list args)
 	unsigned int num = va_arg(args, unsigned int);
 	int tmp = 0;
 	int j = 0;
-	char binary[32];
+	char binary[100];
 	char temp;
 	int i = 0;
 
