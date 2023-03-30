@@ -6,11 +6,14 @@
 */
 int handle_char(va_list args)
 {
-	char s = va_arg(args, int);
+	char s = (char)va_arg(args, int);
 
-	write(1, &s, 1);
-
-	return (1);
+	if (s)
+	{
+		write(1, &s, 1);
+		return (1);
+	}
+	return (0);
 }
 
 /**
@@ -23,9 +26,12 @@ int handle_str(va_list args)
 	char *s = va_arg(args, char*);
 	int tmp = 0;
 
-	tmp += _printf(s);
-
-	return (tmp);
+	if (s)
+	{
+		tmp += _printf(s);
+		return (tmp);
+	}
+	return (0);
 }
 
 /**
@@ -45,14 +51,7 @@ int handle_cent(void)
 */
 int handle_dec(va_list args)
 {
-	int num = va_arg(args, int);
-	char str[11];
-	int tmp = 0;
-
-	sprintf(str, "%d", num);
-	tmp += _printf(str);
-
-	return (tmp);
+	return (handle_int(args));
 }
 
 /**
