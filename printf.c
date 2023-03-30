@@ -13,7 +13,7 @@ specifier_handler specifer_check(char spec)
 		int i;
 
 		handler handlers[6] = {{'i', handle_int}, {'s', handle_str},
-			{'c', handle_char}, {'d', handle_dec}, {'b', handle_binary}
+			{'c', handle_char}, {'d', handle_dec}, {'b', handle_binary},
 			{'\0', NULL}};
 
 		for (i = 0; handlers[i].c != '\0'; i++)
@@ -57,7 +57,14 @@ int _printf(const char *input, ...)
 			} else
 			{
 				handler = specifer_check(input[i]);
-				count += handler(args);
+				if (handler != NULL)
+				{
+					count += handler(args);
+				}
+				if (handler == NULL)
+				{
+					count += write(1, &input[i], 1);
+				}
 			}
 
 			i++;
