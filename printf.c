@@ -63,6 +63,7 @@ int _printf(const char *input, ...)
 				}
 				if (handler == NULL)
 				{
+					count += handle_cent();
 					count += write(1, &input[i], 1);
 				}
 			}

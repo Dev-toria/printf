@@ -26,12 +26,15 @@ int handle_str(va_list args)
 	char *s = va_arg(args, char*);
 	int tmp = 0;
 
-	if (s)
+	if (s != NULL && s != (char *)0)
 	{
 		tmp += _printf(s);
 		return (tmp);
+	} else
+	{
+		tmp += _printf("(null)");
+		return (tmp);
 	}
-	return (0);
 }
 
 /**
