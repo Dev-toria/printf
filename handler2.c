@@ -13,22 +13,27 @@ int handle_binary(va_list args)
 	char temp;
 	int i = 0;
 
-	while (num > 0)
+	if (num != 0)
 	{
-		binary[i++] = (num % 2) + '0';
-		num /= 2;
-	}
-	binary[i] = '\0';
-	i--;
-
-	while (j < i)
-	{
-		temp = binary[j];
-		binary[j] = binary[i];
-		binary[i] = temp;
-		j++;
+		while (num > 0)
+		{
+			binary[i++] = (num % 2) + '0';
+			num /= 2;
+		}
+		binary[i] = '\0';
 		i--;
+
+		while (j < i)
+		{
+			temp = binary[j];
+			binary[j] = binary[i];
+			binary[i] = temp;
+			j++;
+			i--;
+		}
+		tmp += _printf(binary);
+		return (tmp);
 	}
-	tmp += _printf(binary);
-	return (tmp);
+	return (write(1, "0",1));
+	
 }

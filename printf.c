@@ -60,16 +60,13 @@ int _printf(const char *input, ...)
 				{
 					handler = specifer_check(input[i]);
 					if (handler != NULL)
-					{
 						count += handler(args);
-					}
 					if (handler == NULL)
 					{
 						count += handle_cent();
 						count += write(1, &input[i], 1);
 					}
 				}
-
 				i++;
 			}
 		}
