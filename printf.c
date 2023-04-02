@@ -41,36 +41,40 @@ int _printf(const char *input, ...)
 
 	va_start(args, input);
 
-	while (input[i])
+	if (input != NULL)
 	{
-		if (input[i] != '%')
+		while (input[i])
 		{
-			count += write(1, &input[i], 1);
-			i++;
-		}
-		if (input[i] == '%')
-		{
-			i++;
+			if (input[i] != '%')
+			{
+				count += write(1, &input[i], 1);
+				i++;
+			}
 			if (input[i] == '%')
 			{
-				count += handle_cent();
-			} else
-			{
-				handler = specifer_check(input[i]);
-				if (handler != NULL)
-				{
-					count += handler(args);
-				}
-				if (handler == NULL)
+				i++;
+				if (input[i] == '%')
 				{
 					count += handle_cent();
-					count += write(1, &input[i], 1);
+				} else
+				{
+					handler = specifer_check(input[i]);
+					if (handler != NULL)
+					{
+						count += handler(args);
+					}
+					if (handler == NULL)
+					{
+						count += handle_cent();
+						count += write(1, &input[i], 1);
+					}
 				}
-			}
 
-			i++;
+				i++;
+			}
 		}
+		va_end(args);
+		return (count);
 	}
-	va_end(args);
-	return (count);
+	exit(-1);
 }

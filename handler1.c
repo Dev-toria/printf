@@ -8,7 +8,7 @@ int handle_char(va_list args)
 {
 	char s = (char)va_arg(args, int);
 
-	if (s)
+	if (s != '\0')
 	{
 		write(1, &s, 1);
 		return (1);
@@ -29,12 +29,11 @@ int handle_str(va_list args)
 	if (s != NULL && s != (char *)0)
 	{
 		tmp += _printf(s);
-		return (tmp);
 	} else
 	{
 		tmp += _printf("(null)");
-		return (tmp);
 	}
+	return (tmp);
 }
 
 /**
