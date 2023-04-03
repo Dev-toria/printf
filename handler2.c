@@ -34,6 +34,5 @@ int handle_binary(va_list args)
 		tmp += _printf(binary);
 		return (tmp);
 	}
-	return (write(1, "0",1));
-	
+	return (write(1, "0", 1));
 }
