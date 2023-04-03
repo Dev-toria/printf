@@ -8,7 +8,7 @@ int handle_char(va_list args)
 {
 	char s = (char)va_arg(args, int);
 
-	if (s != '\0' && s != NULL)
+	if (s != '\0' && s != ' ')
 	{
 		write(1, &s, 1);
 		return (1);
